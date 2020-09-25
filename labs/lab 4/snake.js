@@ -1,43 +1,29 @@
-//scanner and a barcode
-
-let colors = ["#0ef70a", "#000000","#2f00ff"]
-
-let y = 100;
-
+let num = 10;
+let mx = [0,0,0,0,0,0,0,0,0,0];
+let my = [0,0,0,0,0,0,0,0,0,0];
 
 function setup() {
-
-  createCanvas(600, 400); 
-
-  //this is the setup for the scanner
- stroke("#d9003d"); 
-  strokeWeight(5);
-  frameRate(30);
+  createCanvas(800, 600);
+ 
+  for (let i = 0; i < num; i++) {
+    mx.push(i);
+    my.push(i);
+    mx.shift();
+    my.shift()
+}
 }
 
 function draw() {
-  background(200); 
-
-  //text
-  textSize(30);
-text('Thank You For Purchase!!!', 200, 200);
-
-
- //barcode 
-  for( var i = 0; i < colors.length; i ++) {
-    fill(colors[i] )
-   rect(50*i,100,30,150);
-
-}
-   //scanner loop
-  y = y - 1;
-  if (y < 0) {
-    y = height;
-  }
-  line(0, y, width, y);
-
+  background(117, 43, 115);
 
  
- 
+  let which = frameCount % num;
+  mx[which] = mouseX;
+  my[which] = mouseY;
 
-}
+  for (let i = 0; i < num; i++) {
+    let index = (which + 1 + i) % num;
+    fill(111, 115, 201);
+    circle(mx[index], my[index], 30);
+  
+  }}
